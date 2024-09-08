@@ -23,10 +23,11 @@
   
   <style scoped>
   .buyer-footer {
+    flex-shrink: 0;
     background-color: #333;
     color: white;
     padding: 1rem 0;
-    margin-top: auto;
+    width: 100%;
   }
   .footer-content {
     max-width: 1200px;
@@ -34,6 +35,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
   }
   nav {
     display: flex;

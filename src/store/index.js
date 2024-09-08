@@ -20,7 +20,12 @@ export default createStore({
       localStorage.removeItem('token')
     },
     setSessionType(state, sessionType) {
-      state.sessionType = sessionType
+        state.sessionType = sessionType
+        if (sessionType) {
+          localStorage.setItem('sessionType', sessionType)
+        } else {
+          localStorage.removeItem('sessionType')
+        }
     },
   },
   actions: {
@@ -75,24 +80,32 @@ export default createStore({
         throw error
       }
     },
-    async checkAuth({ commit, state }) {
-      if (!state.token) {
-        const token = localStorage.getItem('token')
-        if (token) {
-          commit('setToken', token)
-        } else {
-          return
+    async checkAuth({ commit, state, dispatch }) {
+        if (!state.token) {
+          const token = localStorage.getItem('token')
+          if (token) {
+            commit('setToken', token)
+          } else {
+            return
+          }
         }
-      }
-      try {
-        const response = await api.getCurrentUser()
-        commit('setUser', response.data)
-      } catch (error) {
-        commit('clearToken')
-        commit('setUser', null)
-        throw error
-      }
-    },
+        try {
+          const response = await api.getCurrentUser()
+          commit('setUser', response.data)
+          
+          const storedSessionType = localStorage.getItem('sessionType')
+          if (storedSessionType) {
+            commit('setSessionType', storedSessionType)
+          } else {
+            await dispatch('setInitialSessionType')
+          }
+        } catch (error) {
+          commit('clearToken')
+          commit('setUser', null)
+          commit('setSessionType', null)
+          throw error
+        }
+      },
     async becomeSeller({ commit }) {
       try {
         const response = await api.becomeSeller()

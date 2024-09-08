@@ -1,7 +1,9 @@
 <template>
     <div class="buyer-layout">
       <BuyerHeader />
-      <router-view></router-view>
+      <main class="buyer-main">
+        <router-view></router-view>
+      </main>
       <BuyerFooter />
     </div>
   </template>
@@ -18,3 +20,16 @@
     }
   }
   </script>
+  
+  <style scoped>
+  .buyer-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .buyer-main {
+    flex: 1;
+    padding: 20px;
+  }
+  </style>

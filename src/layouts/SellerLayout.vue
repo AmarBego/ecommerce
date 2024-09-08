@@ -1,7 +1,9 @@
 <template>
     <div class="seller-layout">
       <SellerHeader />
-      <router-view></router-view>
+      <main class="seller-main">
+        <router-view></router-view>
+      </main>
       <SellerFooter />
     </div>
   </template>
@@ -18,3 +20,16 @@
     }
   }
   </script>
+  
+  <style scoped>
+  .seller-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .seller-main {
+    flex: 1;
+    padding: 20px;
+  }
+  </style>

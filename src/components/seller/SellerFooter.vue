@@ -26,6 +26,9 @@
     background-color: #333;
     color: white;
     padding: 1rem 0;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
   }
   .footer-content {
     max-width: 1200px;
