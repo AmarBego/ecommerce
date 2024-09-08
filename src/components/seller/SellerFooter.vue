@@ -38,7 +38,7 @@ export default {
 
 <style scoped>
 .seller-footer {
-  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  background: linear-gradient(135deg, #34495e, #2c3e50);
   color: #ecf0f1;
   padding: 3rem 0 1rem;
   clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);

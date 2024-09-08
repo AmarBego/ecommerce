@@ -6,6 +6,7 @@ export default createStore({
     user: null,
     token: null,
     sessionType: null,
+    sellerProducts: [],
   },
   mutations: {
     setUser(state, user) {
@@ -26,6 +27,12 @@ export default createStore({
         } else {
           localStorage.removeItem('sessionType')
         }
+    },
+    setSellerProducts(state, products) {
+      state.sellerProducts = products
+    },
+    removeSellerProduct(state, productId) {
+      state.sellerProducts = state.sellerProducts.filter(product => product.id !== productId)
     },
   },
   actions: {
@@ -115,11 +122,42 @@ export default createStore({
         throw error
       }
     },
+    async fetchSellerProducts({ commit }) {
+      try {
+        const response = await api.getSellerProducts()
+        commit('setSellerProducts', response.data)
+        return response
+      } catch (error) {
+        console.error('Failed to fetch seller products:', error)
+        throw error
+      }
+    },
+    
+    async deleteProduct({ commit }, productId) {
+      try {
+        await api.deleteProduct(productId)
+        commit('removeProduct', productId)
+      } catch (error) {
+        console.error('Failed to delete product:', error)
+        throw error
+      }
+    },
+
+    async createProduct({ dispatch }, productData) {
+      try {
+        await api.createProduct(productData)
+        await dispatch('fetchSellerProducts')
+      } catch (error) {
+        console.error('Failed to create product:', error)
+        throw error
+      }
+    },
   },
   getters: {
     isAuthenticated: state => !!state.user,
     isBuyer: state => state.user && state.user.roles.includes('buyer'),
     isSeller: state => state.user && state.user.roles.includes('seller'),
     currentSessionType: state => state.user ? state.user.sessionType : null,
+    sellerProducts: state => state.sellerProducts,
   }
 })

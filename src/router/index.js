@@ -22,6 +22,11 @@ const routes = [
     path: '/dashboard', 
     component: DashboardPage,
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/seller/create-listing',
+    component: () => import('@/views/seller/CreateListingPage.vue'),
+    meta: { requiresAuth: true, role: 'seller' }
   }
 ]
 

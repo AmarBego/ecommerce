@@ -43,5 +43,17 @@ export default {
   },
   switchSession(sessionType) {
     return api.post('/user/switch-session', { sessionType })
+  },
+  getSellerProducts() {
+    return api.get('/seller/products')
+  },
+  createProduct(productData) {
+    return api.post('/seller/products', productData)
+  },
+  updateProduct(productId, productData) {
+    return api.put(`/seller/products/${productId}`, productData)
+  },
+  deleteProduct(productId) {
+    return api.delete(`/seller/products/${productId}`)
   }
 }
