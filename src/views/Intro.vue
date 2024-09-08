@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import '@/assets/global.css'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -52,11 +53,9 @@ export default {
 
 <style scoped>
 .intro-container {
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
   padding: 2rem;
 }
 

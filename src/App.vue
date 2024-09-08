@@ -53,26 +53,3 @@ export default {
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.main-content {
-  flex: 1;
-}
-
-main {
-  flex: 1;
-}
-</style>

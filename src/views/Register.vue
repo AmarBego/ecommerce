@@ -33,6 +33,7 @@
 import { ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import '@/assets/global.css'
 
 export default {
   name: 'RegisterPage',
@@ -150,7 +151,7 @@ input {
 }
 
 .btn-primary:hover {
-  background-color: #1c5175;
+  background-color: #2980b9;
 }
 
 .error {
