@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <CommonHeader v-if="showCommonHeader" />
     <router-view></router-view>
     <CommonFooter v-if="showCommonHeader" />
   </div>
@@ -10,13 +9,11 @@
 import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import CommonHeader from '@/components/common/CommonHeader.vue'
 import CommonFooter from '@/components/common/CommonFooter.vue'
 
 export default {
   name: 'App',
   components: {
-    CommonHeader,
     CommonFooter
   },
   setup() {

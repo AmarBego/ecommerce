@@ -84,10 +84,13 @@
   .logo {
     font-size: 1.8rem;
     font-weight: bold;
-    background: linear-gradient(45deg, #e74c3c, #f39c12); 
-    -webkit-text-fill-color: transparent;
+    background: linear-gradient(45deg, #e74c3c, #f39c12);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     transition: all 0.3s ease;
   }
+  
   
   .logo:hover {
     transform: scale(1.05);

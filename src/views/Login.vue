@@ -1,22 +1,27 @@
 <template>
-    <div class="login">
-      <h2>Login</h2>
+  <div class="auth-container">
+    <div class="auth-card">
+      <h2>Welcome Back</h2>
       <form @submit.prevent="handleLogin">
-        <div>
-          <label for="email">Email:</label>
+        <div class="input-group">
+          <label for="email">Email</label>
           <input type="email" id="email" v-model="email" required>
         </div>
-        <div>
-          <label for="password">Password:</label>
+        <div class="input-group">
+          <label for="password">Password</label>
           <input type="password" id="password" v-model="password" required>
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" class="btn-primary">Log In</button>
       </form>
       <p v-if="error" class="error">{{ error }}</p>
       <p v-if="registered" class="success">You have successfully registered! Please login.</p>
+      <div class="auth-footer">
+        <p>Don't have an account? <router-link to="/register">Sign up</router-link></p>
+      </div>
     </div>
-  </template>
-  
+  </div>
+</template>
+
   <script>
   import { ref } from 'vue'
   import { useStore } from 'vuex'
@@ -62,33 +67,87 @@
   </script>
   
   <style scoped>
-  .login {
-    max-width: 300px;
-    margin: 0 auto;
-  }
-  form div {
-    margin-bottom: 1rem;
-  }
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-  input {
-    width: 100%;
-    padding: 0.5rem;
-  }
-  button {
-    width: 100%;
-    padding: 0.5rem;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  .error {
-    color: red;
-  }
-  .success {
-    color: green;
-  }
-  </style>
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.auth-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+input {
+  width: calc(100% - 2rem);
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 1rem;
+}
+
+.btn-primary:hover {
+  background-color: #1c5175;
+}
+
+.error {
+  color: #d32f2f;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.success {
+  color: #3498db;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.auth-footer a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+</style>
